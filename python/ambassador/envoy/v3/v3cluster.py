@@ -65,6 +65,11 @@ class V3Cluster(Cacheable):
             "lb_policy": cluster.lb_type.upper(),
             "connect_timeout": "%0.3fs" % (float(cluster.connect_timeout_ms) / 1000.0),
             "dns_lookup_family": dns_lookup_family,
+            "round_robin_lb_config": {
+                "slow_start_config": {
+                    "slow_start_window": "60s"
+                }
+            }
         }
 
         if cluster.get("stats_name", ""):
